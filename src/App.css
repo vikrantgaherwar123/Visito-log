@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.form-margin {
+  margin: 2em;
+}
+
+.news-cards {
+  margin: 1em;
+  width: fit-content;
+  margin-left: 8em;
+}
+.font-desc{
+  font-size: large !important;
+  font-weight: 800 !important;
+}
