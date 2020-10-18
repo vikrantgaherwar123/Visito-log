@@ -1,11 +1,18 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-import VisitorLogContainer from './components/VisitorLogContainer'
+// import VisitorLogContainer from './components/VisitorLogContainer';
+import CsvUpload from './components/csvUload';
+import Header from './components/Header'
+import Footer from './components/Footer'
+
 
 function App() {
   return (
     <div className="App">
-    {<VisitorLogContainer/>}
+    <Header/>
+    <CsvUpload/>
+    <Footer/>
     </div>
   );
 }

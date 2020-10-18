@@ -156,9 +156,6 @@ export default function VisitorLogContainer() {
   const [newsList, setnewsList] = React.useState([]);
   const [selectedVistorValue, setSelectedVistorValue] = React.useState('a');
 
- 
-
-
 
   const sideMenuChange = (value) => {
     setOpen(false);
