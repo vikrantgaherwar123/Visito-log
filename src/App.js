@@ -1,20 +1,17 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React, { Component } from 'react';
 import './App.css';
-// import VisitorLogContainer from './components/VisitorLogContainer';
-import CsvUpload from './components/csvUload';
-import Header from './components/Header'
-import Footer from './components/Footer'
+import  Header from './components/Header';
+import Router from './Router';
 
 
-function App() {
-  return (
-    <div className="App">
-    <Header/>
-    <CsvUpload/>
-    <Footer/>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+          <Router/>
+      </div>
+    );
+  }
 }
 
 export default App;
