@@ -1,14 +1,16 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Public from './components/Public';
-import Protected from './components/Protected';
+import UserLoginRegistration from './components/LoginAndRegistratons/UserLoginRegistration';
+import UserDashboard from './components/dashboards/UserDashboard';
+import NotFoundComponent from './components/NotFoundComponent';
 import PrivateRoute from './PrivateRoute';
 
 const Router = (props) => (
   
     <Switch>
-      <Route exact path='/' component={Public}/>{/* Login Page */}
-      <PrivateRoute path="/protected" component={Protected} />
+      <Route exact path='/' component={UserLoginRegistration}/>{/* Login Page */}{/* We can directly use Link Tag to route to public pages. Use useHistory for protected routes*/}
+      <PrivateRoute path="/userdashboard" component={UserDashboard} />
+      <Route path='*' exact component={NotFoundComponent} />
     </Switch>
 
 )

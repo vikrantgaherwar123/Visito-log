@@ -37,3 +37,13 @@
   font-size: x-large;
   color: #2a8b8a;
 }
+
+.MuiDialog-paperWidthSm {
+  max-width: 600px;
+  width: 35%;
+}
+
+.popup-header{
+  background: #017F8D;
+  color: #fff;
+}
