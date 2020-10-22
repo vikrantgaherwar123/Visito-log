@@ -36,11 +36,17 @@
   font-weight: 100;
   font-size: x-large;
   color: #2a8b8a;
+  margin-left: 10em;
+
 }
 
 .MuiDialog-paperWidthSm {
   max-width: 600px;
   width: 35%;
+}
+
+.MuiSwitch-colorSecondary.Mui-checked {
+  color: #017F8D !important;
 }
 
 .popup-header{
