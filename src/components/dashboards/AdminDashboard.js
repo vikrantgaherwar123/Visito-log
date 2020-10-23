@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import {
-  BrowserRouter as Router,
-  Link,
   useHistory
 } from "react-router-dom";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 
 import Auth from '../../Auth';
-import AdminLicenseDetail from '../LicenseDetails/AdminLicenseDetail';
-
+import AdminUserDetail from '../LicenseDetails/AdminUserDetail';
+import UserLicenseDetail from '../LicenseDetails/UserLicenseDetail';
 
 const drawerWidth = 240;
 
@@ -74,7 +72,10 @@ export default function AdminDashboard() {
   let history = useHistory();
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+
+  const [openDetail, setUserDetail] = useState(true);
+
  
 
   const logout = () => {
@@ -98,7 +99,12 @@ export default function AdminDashboard() {
           }}
         >
           <h2 className="drawer-content-text">Dispensary Exchange</h2>
-
+          <div>
+            <ul className='sidebar-nav-ul'>
+              <li onClick={() => setUserDetail(true)} className={'sidebar-nav-li'}>User Details</li>
+              <li onClick={() => setUserDetail(false)} className={'sidebar-nav-li'}>License Details</li>
+            </ul>
+          </div>
         </Drawer>
 
 
@@ -116,7 +122,7 @@ export default function AdminDashboard() {
         <div className="clearfix"></div>
       </div>
       <div style={{ width: '85%', background: 'cornsilk', marginLeft: '15em', height: '91vh' }} className="row table-responsive">
-        <AdminLicenseDetail />{/*you can switch this component with userDashboard*/}
+        {openDetail ? <AdminUserDetail /> : <UserLicenseDetail/>}
       </div>
     </div>
   );

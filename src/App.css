@@ -29,6 +29,7 @@
 .drawer-content-text {
   text-align: center;
   font-weight: 100;
+  margin: 8%;
 }
 
 .licence-text{
@@ -49,7 +50,26 @@
   color: #017F8D !important;
 }
 
+.MuiSwitch-switchBase {
+  top: 0;
+  left: 0;
+  color: #017F8D !important;
+  z-index: 1;
+  position: absolute;
+  transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+
 .popup-header{
   background: #017F8D;
   color: #fff;
+}
+
+
+
+.loggOut-icon {
+  font-size:'18px' !important;
+  color: '#017F8D' !important;
+  float: 'right' !important;
+  cursor: pointer !important;
 }

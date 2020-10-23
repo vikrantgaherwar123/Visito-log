@@ -7,8 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
-import { withStyles } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 //AG GRID IMPORTS
 import { render } from 'react-dom';
 import { AgGridReact, AgGridColumn } from '@ag-grid-community/react';
@@ -19,69 +18,22 @@ import { ColumnsToolPanelModule } from '@ag-grid-enterprise/column-tool-panel';
 import '@ag-grid-community/core/dist/styles/ag-grid.css';
 import '@ag-grid-community/core/dist/styles/ag-theme-alpine.css';
 
-import UserLicenseData from './LicenseData/UserLicenseData';
-import AdminLicenseData from './LicenseData/AdminLicenseData';
+export default function AdminUserDetail() {
 
-const IOSSwitch = withStyles((theme) => ({
-    root: {
-      width: 45,
-      height: 24,
-      padding: 0,
-      margin: theme.spacing(1),
-    },
-    switchBase: {
-      padding: 1,
-      '&$checked': {
-        transform: 'translateX(22px)',
-        color: '#C1BFBF',
-        '& + $track': {
-          backgroundColor: '#52d869',
-          opacity: 1,
-          border: 'none',
-        },
-      },
-      '&$focusVisible $thumb': {
-        color: '#C1BFBF',
-        border: '6px solid #fff',
-      },
-    },
-    thumb: {
-      width: 22,
-      height: 21,
-    },
-    track: {
-      borderRadius: 26 / 2,
-      border: `1px solid ${theme.palette.grey[400]}`,
-      backgroundColor: '#C1BFBF',
-      opacity: 1,
-      transition: theme.transitions.create(['background-color', 'border']),
-    },
-    checked: {},
-    focusVisible: {},
-  }))(({ classes, ...props }) => {
-    return (
-      <Switch
-        focusVisibleClassName={classes.focusVisible}
-        disableRipple
-        classes={{
-          root: classes.root,
-          switchBase: classes.switchBase,
-          thumb: classes.thumb,
-          track: classes.track,
-          checked: classes.checked,
-        }}
-        {...props}
-      />
-    );
-  });
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            backgroundColor: "transparent",
+        }
+      }));
+    const classes = useStyles();
 
-export default function UserLicenseDetail() {
+    const [open, setOpen] = useState(false);
 
     //switch input 
 
     const [state, setState] = useState({
         checkedA: true,
-        checkedB: false,
+        checkedB: true,
     });
 
     const handleChange = (event) => {
@@ -126,6 +78,46 @@ export default function UserLicenseDetail() {
     //     document.querySelector('#myGrid').style.height = '400px';
     // };
 
+    function createRow(index) {
+        return {
+            srno: 1,
+            name: 'Vikrant',
+            mobno: '12345abc',
+            email: 'abc12345@gmail.com',
+        };
+    }
+
+    function createBusinessRow(index) {
+        return {
+            srno: 1,
+            licenceno1: 12345,
+            licencetype1: '12345abc',
+            licencetypedet1: 'abc12345',
+            businessdet1: 'John Business',
+            issuedate1: '4/4/1852',
+            expdate1: '14/4/2020',
+            licenceusage1: 'Usage',
+            licenceterm1: 'Term',
+            licencestate1: '123 Street, CA'
+        };
+    }
+    
+    function getData(count) {
+        var rowData = [];
+        for (var i = 0; i < count; i++) {
+            rowData.push(createRow(i));
+        }
+        return rowData;
+    }
+
+    function getBusinessData(count) {
+        var rowData = [];
+        for (var i = 0; i < count; i++) {
+            rowData.push(createBusinessRow(i));
+        }
+        return rowData;
+    }
+
     
     return (
         <div className="container">
@@ -167,18 +159,80 @@ export default function UserLicenseDetail() {
                   </div>
                 </div> */}
 
-            <div  style={{textAlign: 'end'}}>
-                <div className="col-md-4">
-                    License &nbsp;<br /> Details &nbsp;
-                </div>
-                <FormControlLabel
-                    control={<IOSSwitch checked={state.checkedB} onChange={handleChange} name="checkedB" />}
-                />
-                 <div style={{float:'right'}}>
-                    Business &nbsp;<br /> Details &nbsp;
-                </div>
+            <div style={{textAlign: 'end'}}>
+                <Button onClick={() => setOpen(true)}>ADD User</Button>
             </div>
-            {state.checkedB ? <UserLicenseData/> : <AdminLicenseData/>}
+            <div
+                id="myGrid"
+                style={{width: '75%', marginTop: '16em' }}
+                className="ag-theme-alpine"
+            >
+                <AgGridReact
+                    modules={[
+                        ClientSideRowModelModule,
+                        RowGroupingModule,
+                        MenuModule,
+                        ColumnsToolPanelModule,
+                    ]}
+                    defaultColDef={{
+                        enableRowGroup: true,
+                        enablePivot: true,
+                        enableValue: true,
+                        sortable: true,
+                        filter: true,
+                        resizable: true,
+                    }}
+                    rowData={getData(1)}
+                    statusBar={{ items: [{ component: 'agAggregationComponent' }] }}
+                    enableRangeSelection={true}
+                    domLayout={'autoHeight'}
+                    animateRows={true}
+                    popupParent={document.body}
+                    // onGridReady={onGridReady}
+                    pagination={true}
+                >
+                    <AgGridColumn headerName="Sr. No." field="srno" />
+                    <AgGridColumn headerName="Name" field="name" />
+                    <AgGridColumn headerName="mobile No." field="mobno" />
+                    <AgGridColumn headerName="Email ID" field="email" />
+                    </AgGridReact>
+            </div>
+            <Dialog
+                open={open}
+                onClose={() => setOpen(false)}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                BackdropProps={{
+                    classes: {
+                        root: classes.root
+                    }
+                }
+                }
+            >
+                <header className="popup-header">
+                    <DialogTitle id="alert-dialog-title">{"Business Detail"}
+                        <div className="float-right">icon</div>
+                    </DialogTitle>
+                </header>
+                <DialogContent>
+                    <table className="table table-borderless">
+
+                        <tbody>
+                            <tr>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                         
+                        </tbody>
+                    </table>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

@@ -28,8 +28,18 @@ function Alert(props) {
   
   const useStyles = makeStyles((theme) => ({
     root: {
-      height: '100vh',
+        height: '100vh',
+        "& label.Mui-focused": {
+            color: "#017F8D"
+        },
+        "& .MuiInput-underline:after": {
+            borderBottomColor: "#017F8D"
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+            color: "purple"
+          },
     },
+
     image: {
     //   backgroundImage: 'url(https://source.unsplash.com/random)',
       backgroundRepeat: 'no-repeat',
@@ -49,8 +59,8 @@ function Alert(props) {
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
+      width: '80%', // Fix IE 11 issue.
+      marginTop: theme.spacing(1)
     },
     color: {
         backgroundColor: 'darkgray'
@@ -61,7 +71,8 @@ function Alert(props) {
     signin: {
         color: 'gray',
         fontFamily: 'system-ui'
-    }
+    },
+    
   }));
 
 const Login =() => {
@@ -116,81 +127,83 @@ const Login =() => {
     
 
     return (
-        // <div>
-        //     <Link to='/'>Public</Link><br/>
-        //     <Link to='protected'>Protected</Link><br/>
-        //     <button onClick={login}>
-        //     Login</button><br />
-        // </div>
+        
         <div>
-        <Grid container component="main" className={classes.root}>
-            <CssBaseline />
-            <Grid item xs={false} sm={2} md={5} className={classes.color} />
-            <Grid  item xs={12} sm={10} md={7} component={Paper} elevation={6} square>
-                <div style={{margin:"20em"}} className={classes.paper}>
-                    
-                    <Typography className={classes.signin} component="h1" variant="h5">
-                        Sign In
-                    </Typography><br/>
-                    <p style={{color: 'darkcyan'}}>Enter your email and password</p>
-                    <form className={classes.form} noValidate>
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            label="Email"
-                            name="useremail"
-                            autoComplete="useremail"
-                            autoFocus
-                            data-testid='useremail'
-                            onChange={handleuseremailChange}
-                        />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            autoComplete="current-password"
-                            data-testid='password'
-                            onChange={handlePasswordChange}
-                        />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
-                        <Button style={{borderRadius: '1em'}}
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            data-testid='signIn_btn'
-                            className={classes.submit,'submit-register-btn'}
-                            onClick={login}
-                        >
+            <Grid container component="main" className={classes.root}>
+                <CssBaseline />
+                <Grid item xs={false} sm={2} md={5} className={classes.color} />
+                <Grid item xs={12} sm={10} md={7} component={Paper} elevation={6} square>
+                    <div style={{ margin: "20em" }} className={classes.paper}>
+
+                        <Typography className={classes.signin} component="h1" variant="h5">
                             Sign In
-                        </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                {/* <Link data-testid='forgotPwdLink' variant="body2">
+                    </Typography><br />
+                        <p style={{ color: 'darkcyan' }}>Enter your email and password</p>
+                        <form className={classes.form} noValidate>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                label="Email"
+                                name="useremail"
+                                autoComplete="useremail"
+                                autoFocus
+                                data-testid='useremail'
+                                onChange={handleuseremailChange}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                autoComplete="current-password"
+                                data-testid='password'
+                                onChange={handlePasswordChange}
+                            />
+                            <br/>
+                            <br/>
+                            <FormControlLabel
+                                control={<Checkbox value="remember" color="primary" />}
+                                label="Remember me"
+                            />
+                            <br/>
+                            <br/>
+                            <br/>
+                            <Button style={{ borderRadius: '1em' }}
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                data-testid='signIn_btn'
+                                className={classes.submit, 'submit-register-btn'}
+                                onClick={login}
+                            >
+                                Sign In
+                            </Button>
+                            <br/>
+                            <br/>
+                            <Grid container>
+                                <Grid item xs>
+                                    {/* <Link data-testid='forgotPwdLink' variant="body2">
                                     Forgot password?
                                 </Link> */}
+                                </Grid>
+                                <Grid item>
+                                    <Link data-testid='signUpLink' to="/register" variant="body2">
+                                        {"Don't have an account? Sign Up"}
+                                    </Link>
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <Link data-testid='signUpLink' to="/register" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
-                        <Snackbar open={openLogin} autoHideDuration={6000} onClose={() => setLoginOpen(false)}>
-                            <Alert data-testid='loginerrMsg' onClose={() => setLoginOpen(false)} severity="error">
-                                {loginerror}
-                            </Alert>
-                        </Snackbar>
-                    </form>
-                </div>
+                            <Snackbar open={openLogin} autoHideDuration={6000} onClose={() => setLoginOpen(false)}>
+                                <Alert data-testid='loginerrMsg' onClose={() => setLoginOpen(false)} severity="error">
+                                    {loginerror}
+                                </Alert>
+                            </Snackbar>
+                        </form>
+                    </div>
+                </Grid>
             </Grid>
-        </Grid> 
         </div>   
         
     )

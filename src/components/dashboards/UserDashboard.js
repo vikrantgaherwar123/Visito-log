@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../css/Userdashboard.css';
 import {
   BrowserRouter as Router,
   Link,
@@ -28,7 +29,7 @@ import MailIcon from '@material-ui/icons/Mail';
 
 import Auth from '../../Auth';
 import UserLicenseDetail from '../LicenseDetails/UserLicenseDetail';
-
+import './UserDashboard.css';
 
 const drawerWidth = 240;
 
@@ -116,22 +117,28 @@ export default function UserDashboard() {
           }}
         >
           <h2 className="drawer-content-text">Dispensary Exchange</h2>
-
+          <div style={{height:'10vh'}}>
+          </div>
+          <div style={{textAlign:"center"}}>
+            <ul className='sidebar-nav-ul'>
+              <li style={{padding: '9px'}}>License Details</li>
+            </ul>
+          </div>
         </Drawer>
       </div>
-      <div className="row">
+      <div style={{display: 'flex',margin: '1em'}}>
         <div className="col-md-12">
           <div className="col-md-4"></div>
           <div className="col-md-4">
             <h4 style={{ float: 'left' }} className='licence-text'>License Details</h4>
           </div>
-          <div className="col-md-11">
-            <h2 onClick={logout} style={{ float: 'right' }}>Icon</h2>
+          <div className="col-md-12">
+            <h2 onClick={logout} style={{fontSize:'18px',color: '#017F8D',float: 'right',marginTop: '15px' }}>Hi, User</h2>
           </div>
         </div>
       </div>
-      <div style={{ width: '85%', background: 'cornsilk', marginLeft: '15em', height: '91vh' }} className="row table-responsive">
-        <UserLicenseDetail />
+        <div style={{ width: '87%', background: '#F2EDED', marginLeft: '15em', height: '91vh' }} className="row table-responsive">
+          <UserLicenseDetail />
       </div>
     </div>
   );

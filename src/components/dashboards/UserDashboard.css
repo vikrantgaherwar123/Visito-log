@@ -1,0 +1,30 @@
+.ag-header-cell {
+    background-color: #017F8D;
+    color: #FFF;
+}
+
+.sidebar-nav-ul{
+/* list-style: none; */
+margin-left: -2em;
+
+/* top: 188px; */
+/* left: 0px; */
+width: 256px;
+height: 44px;
+background: rgb(135 197 196);
+border-radius: 0px 27px 27px 0px;
+/* opacity: 0.5; */
+
+}
+  
+.sidebar-nav-li{
+/* top: 200px; */
+left: 73px;
+width: 110px;
+/* height: 21px; */
+text-align: center;
+font: normal normal normal 15px/227px Poppins;
+letter-spacing: 0px;
+color: #FFFFFF;
+opacity: 1;
+}
